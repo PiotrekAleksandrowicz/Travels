@@ -22,5 +22,11 @@ public class HotelTests {
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[@class='select2-match' and text()='Dubai']")));
         driver.findElement(By.xpath("//span[@class='select2-match' and text()='Dubai']")).click();
 
+        driver.findElement(By.name("checkin")).sendKeys("23/07/2022");
+        driver.findElement(By.name("checkout")).sendKeys("25/07/2022");
+
+
+
+
     }
 }
