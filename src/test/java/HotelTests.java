@@ -5,8 +5,11 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.Test;
+import java.util.List;
 
-public class HotelTests {
+import java.util.stream.Collectors;
+
+public class HotelTests{
 
     @Test
     public void searchHotel(){
@@ -40,7 +43,17 @@ public class HotelTests {
         driver.findElement(By.cssSelector("button[class='btn btn-lg btn-block btn-primary pfb0 loader']")).click();
 
 
+        List<String> hotelNames = driver.findElements(By.xpath("//h4[@class='RTL go-text-right mt0 mb4 list_title']//b")).stream()
+                .map(el ->el.getAttribute("textContent"))
+                .collect(Collectors.toList());
+
+        System.out.println("Quantity of hotel names " + hotelNames.size());
+
+        hotelNames.forEach(el -> System.out.println(el));
 
 
+        /*for (String name:hotelNames) {
+            System.out.println(name);
+        }*/
     }
 }
