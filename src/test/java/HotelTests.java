@@ -4,6 +4,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 import java.util.List;
 
@@ -51,9 +52,9 @@ public class HotelTests{
 
         hotelNames.forEach(el -> System.out.println(el));
 
-
-        /*for (String name:hotelNames) {
-            System.out.println(name);
-        }*/
+        Assert.assertEquals("Jumeirah Beach Hotel", hotelNames.get(0));
+        Assert.assertEquals("Oasis Beach Tower", hotelNames.get(1));
+        Assert.assertEquals("Rose Rayhaan Rotana", hotelNames.get(2));
+        Assert.assertEquals("Hyatt Regency Perth", hotelNames.get(3));
     }
 }
