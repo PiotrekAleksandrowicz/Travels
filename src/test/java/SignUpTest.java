@@ -41,4 +41,6 @@ public class SignUpTest {
         Assert.assertTrue(heading.getText().contains("Hi, Jan Kowalski"));
 
     }
+
+
 }
