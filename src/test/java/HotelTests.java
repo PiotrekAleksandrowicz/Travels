@@ -57,6 +57,8 @@ public class HotelTests{
         Assert.assertEquals("Oasis Beach Tower", hotelNames.get(1));
         Assert.assertEquals("Rose Rayhaan Rotana", hotelNames.get(2));
         Assert.assertEquals("Hyatt Regency Perth", hotelNames.get(3));
+
+        driver.quit();
     }
 
     @Test
@@ -91,5 +93,7 @@ public class HotelTests{
 
         Assert.assertTrue(result.isDisplayed());
         Assert.assertEquals(result.getText(),"No Results Found");
+        driver.quit();
+
     }
 }

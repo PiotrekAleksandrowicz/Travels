@@ -43,6 +43,7 @@ public class SignUpTest {
         WebElement heading =  driver.findElement(By.xpath("//h3[@class='RTL']"));
 
         Assert.assertTrue(heading.getText().contains("Hi, Jan Kowalski"));
+        driver.quit();
 
     }
 
@@ -83,6 +84,9 @@ public class SignUpTest {
         softAssert.assertTrue(resultOfTest.contains("The First name field is required."));
         softAssert.assertTrue(resultOfTest.contains("The Last Name field is required."));
         softAssert.assertAll();
+
+        driver.quit();
+
     }
 
     @Test
@@ -117,6 +121,9 @@ public class SignUpTest {
         SoftAssert softAssert = new SoftAssert();
 
         softAssert.assertTrue(resultOfTest.contains("The Email field must contain a valid email address."));
+
+        driver.quit();
+
     }
 
 
