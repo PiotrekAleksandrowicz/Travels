@@ -82,14 +82,41 @@ public class SignUpTest {
         softAssert.assertTrue(resultOfTest.contains("The Password field is required."));
         softAssert.assertTrue(resultOfTest.contains("The First name field is required."));
         softAssert.assertTrue(resultOfTest.contains("The Last Name field is required."));
-         softAssert.assertAll();
+        softAssert.assertAll();
+    }
 
+    @Test
+    public void signUpWrongEmail(){
+        WebDriverManager.chromedriver().setup();
+        WebDriver driver = new ChromeDriver();
+        driver.manage().window().maximize();
+        driver.get("http://www.kurs-selenium.pl/demo/");
 
+        int randomNumber = (int) (Math.random()*100);
 
+        driver.findElements(By.xpath("//li[@id='li_myaccount']")).stream()
+                .filter(WebElement::isDisplayed).findFirst().ifPresent(WebElement::click);
 
+        driver.findElements(By.xpath("//a[text()='  Sign Up']")).get(1).click();
 
+        driver.findElement(By.name("firstname")).sendKeys("Jan");
+        driver.findElement(By.name("lastname")).sendKeys("Kowalski");
+        driver.findElement(By.name("phone")).sendKeys("666666666");
+        driver.findElement(By.name("email")).sendKeys("kowalskiJan" + randomNumber);
+        driver.findElement(By.name("password")).sendKeys("123456");
+        driver.findElement(By.name("confirmpassword")).sendKeys("123456");
+        driver.findElement(By.xpath("//button[text()=' Sign Up']")).click();
 
+        List<String> resultOfTest = driver.findElements(By.xpath("//div[@class='alert alert-danger']//p"))
+                .stream()
+                .map(WebElement::getText)
+                .collect(Collectors.toList());
 
+        System.out.println(resultOfTest.size());
+
+        SoftAssert softAssert = new SoftAssert();
+
+        softAssert.assertTrue(resultOfTest.contains("The Email field must contain a valid email address."));
     }
 
 
