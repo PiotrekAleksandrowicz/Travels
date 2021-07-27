@@ -87,6 +87,9 @@ public class HotelTests{
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("button[class='btn btn-lg btn-block btn-primary pfb0 loader']")));
         driver.findElement(By.cssSelector("button[class='btn btn-lg btn-block btn-primary pfb0 loader']")).click();
 
+        WebElement result = driver.findElement(By.xpath("//h2[@class='text-center']"));
 
+        Assert.assertTrue(result.isDisplayed());
+        Assert.assertEquals(result.getText(),"No Results Found");
     }
 }
