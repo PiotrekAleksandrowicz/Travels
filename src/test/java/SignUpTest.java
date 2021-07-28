@@ -15,22 +15,9 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 
-public class SignUpTest {
+public class SignUpTest extends BaseTest {
 
-    private WebDriver driver;
 
-    @BeforeMethod
-    public void setUp(){
-        WebDriverManager.chromedriver().setup();
-        driver = new ChromeDriver();
-        driver.manage().window().maximize();
-        driver.get("http://www.kurs-selenium.pl/demo/");
-    }
-
-    @AfterMethod
-    public void tearDown(){
-        driver.quit();
-    }
 
     @Test
     public void signUp(){
