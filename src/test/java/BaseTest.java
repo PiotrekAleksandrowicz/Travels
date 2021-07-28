@@ -8,8 +8,6 @@ public class BaseTest {
 
     public WebDriver driver;
 
-
-
     @BeforeMethod
     public void setUp(){
         WebDriverManager.chromedriver().setup();
