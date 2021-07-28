@@ -6,6 +6,8 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
@@ -15,12 +17,23 @@ import java.util.stream.Collectors;
 
 public class SignUpTest {
 
-    @Test
-    public void signUp(){
+    private WebDriver driver;
+
+    @BeforeMethod
+    public void setUp(){
         WebDriverManager.chromedriver().setup();
-        WebDriver driver = new ChromeDriver();
+        driver = new ChromeDriver();
         driver.manage().window().maximize();
         driver.get("http://www.kurs-selenium.pl/demo/");
+    }
+
+    @AfterMethod
+    public void tearDown(){
+        driver.quit();
+    }
+
+    @Test
+    public void signUp(){
 
         int randomNumber = (int) (Math.random()*100);
 
@@ -43,17 +56,12 @@ public class SignUpTest {
         WebElement heading =  driver.findElement(By.xpath("//h3[@class='RTL']"));
 
         Assert.assertTrue(heading.getText().contains("Hi, Jan Kowalski"));
-        driver.quit();
+
 
     }
 
     @Test
     public void signUpEmptyForm(){
-        WebDriverManager.chromedriver().setup();
-        WebDriver driver = new ChromeDriver();
-        driver.manage().window().maximize();
-        driver.get("http://www.kurs-selenium.pl/demo/");
-
 
         driver.findElements(By.xpath("//li[@id='li_myaccount']")).stream()
                 .filter(WebElement::isDisplayed).findFirst().ifPresent(WebElement::click);
@@ -85,16 +93,12 @@ public class SignUpTest {
         softAssert.assertTrue(resultOfTest.contains("The Last Name field is required."));
         softAssert.assertAll();
 
-        driver.quit();
+
 
     }
 
     @Test
     public void signUpWrongEmail(){
-        WebDriverManager.chromedriver().setup();
-        WebDriver driver = new ChromeDriver();
-        driver.manage().window().maximize();
-        driver.get("http://www.kurs-selenium.pl/demo/");
 
         int randomNumber = (int) (Math.random()*100);
 
@@ -122,7 +126,7 @@ public class SignUpTest {
 
         softAssert.assertTrue(resultOfTest.contains("The Email field must contain a valid email address."));
 
-        driver.quit();
+
 
     }
 
