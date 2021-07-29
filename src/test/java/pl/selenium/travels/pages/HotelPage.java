@@ -20,32 +20,42 @@ public class HotelPage {
     @FindBy(xpath = "//span[@class='select2-match' and text()='Dubai']" )
     private WebElement hotelMatch;
 
+    @FindBy(name = "checkin")
+    private WebElement checkInInput;
 
+    @FindBy(name = "checkout")
+    private WebElement checkOutInput;
 
+    @FindBy(id = "travellersInput")
+    private WebElement travellersInput;
 
+    @FindBy(id = "adultPlusBtn")
+    private WebElement adultPlusButton;
 
+    @FindBy(id = "childPlusBtn")
+    private WebElement childPlusButton;
 
+    @FindBy(css = "button[class='btn btn-lg btn-block btn-primary pfb0 loader']")
+    private WebElement searchButton;
 
-    driver.findElement(By.xpath("//span[text()='Search by Hotel or City Name']")).click();
-        driver.findElement(By.xpath("//*[@id=\"select2-drop\"]/div/input")).sendKeys("Dubai");
-    WebDriverWait wait = new WebDriverWait(driver, 10);
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[@class='select2-match' and text()='Dubai']")));
-        driver.findElement(By.xpath("//span[@class='select2-match' and text()='Dubai']")).click();
-        driver.findElement(By.name("checkin")).sendKeys("23/07/2021");
-        driver.findElement(By.name("checkout")).click();
-        driver.findElements(By.xpath("//td[@class='day ' and text()='30']"))
-                .stream()
-                .filter(el ->el.isDisplayed())
-            .findFirst()
-                .ifPresent(el ->el.click());
-        driver.findElement(By.id("travellersInput")).click();
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("adultPlusBtn")));
-        driver.findElement(By.id("adultPlusBtn")).click();
-        driver.findElement(By.id("childPlusBtn")).click();
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("button[class='btn btn-lg btn-block btn-primary pfb0 loader']")));
-        driver.findElement(By.cssSelector("button[class='btn btn-lg btn-block btn-primary pfb0 loader']")).click();
-    List<String> hotelNames = driver.findElements(By.xpath("//h4[@class='RTL go-text-right mt0 mb4 list_title']//b")).stream()
-            .map(el ->el.getAttribute("textContent"))
-            .collect(Collectors.toList());
-        System.out.println("Quantity of hotel names " + hotelNames.size());
+    public void setCity(String cityName){
+        searchHotelSpan.click();
+        searchHotelInput.sendKeys(cityName);
+        hotelMatch.click();
+    }
+
+    public void setDates(String checkIn, String checkOut){
+        checkInInput.sendKeys(checkIn);
+        checkOutInput.sendKeys(checkOut);
+    }
+
+    public void setTravellers(){
+        travellersInput.click();
+        adultPlusButton.click();
+        childPlusButton.click();
+    }
+
+    public void performSearch(){
+        searchButton.click();
+    }
 }
