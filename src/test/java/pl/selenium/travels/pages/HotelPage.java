@@ -38,6 +38,7 @@ public class HotelPage {
     @FindBy(css = "button[class='btn btn-lg btn-block btn-primary pfb0 loader']")
     private WebElement searchButton;
 
+
     public HotelPage(WebDriver driver){
         PageFactory.initElements(driver, this);
         WebDriverWait wait = new WebDriverWait(driver, 10);
@@ -58,14 +59,20 @@ public class HotelPage {
         checkOutInput.sendKeys(checkOut);
     }
 
-    public void setTravellers(){
+    public void setTravellers(int adultsToAdd, int childToAdd){
         travellersInput.click();
-        adultPlusButton.click();
-        childPlusButton.click();
+        for(int i = 0; i<adultsToAdd; i++){
+            adultPlusButton.click();
+        }
+        for(int i = 0; i<childToAdd; i++){
+            childPlusButton.click();
+        }
     }
 
     public void performSearch(){
         searchButton.click();
     }
+
+
 
 }

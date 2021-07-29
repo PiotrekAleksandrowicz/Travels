@@ -7,6 +7,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import pl.selenium.travels.pages.HotelPage;
+import pl.selenium.travels.pages.HotelResultsPage;
 import pl.selenium.travels.tests.BaseTest;
 
 import java.util.List;
@@ -22,16 +23,11 @@ public class HotelTest extends BaseTest {
         HotelPage hotelPage = new HotelPage(driver);
         hotelPage.setCity("Dubai", driver);
         hotelPage.setDates("23/08/2021","30/08/2021");
-        hotelPage.setTravellers();
+        hotelPage.setTravellers(1, 1);
         hotelPage.performSearch();
 
-
-
-        List<String> hotelNames = driver.findElements(By.xpath("//h4[@class='RTL go-text-right mt0 mb4 list_title']//b")).stream()
-                .map(el ->el.getAttribute("textContent"))
-                .collect(Collectors.toList());
-        System.out.println("Quantity of hotel names " + hotelNames.size());
-        hotelNames.forEach(el -> System.out.println(el));
+        HotelResultsPage hotelResultsPage = new HotelResultsPage(driver);
+        List<String> hotelNames = hotelResultsPage.getHotelName();
         Assert.assertEquals("Jumeirah Beach Hotel", hotelNames.get(0));
         Assert.assertEquals("Oasis Beach Tower", hotelNames.get(1));
         Assert.assertEquals("Rose Rayhaan Rotana", hotelNames.get(2));
@@ -44,12 +40,11 @@ public class HotelTest extends BaseTest {
 
         HotelPage hotelPage = new HotelPage(driver);
         hotelPage.setDates("23/08/2021","30/08/2021");
-        hotelPage.setTravellers();
+        hotelPage.setTravellers(1,1);
         hotelPage.performSearch();
 
-        driver.findElement(By.cssSelector("button[class='btn btn-lg btn-block btn-primary pfb0 loader']")).click();
-        WebElement result = driver.findElement(By.xpath("//h2[@class='text-center']"));
-        Assert.assertTrue(result.isDisplayed());
-        Assert.assertEquals(result.getText(),"No Results Found");
+        HotelResultsPage hotelResultsPage = new HotelResultsPage(driver);
+        Assert.assertTrue(hotelResultsPage.headingNoResults.isDisplayed());
+        Assert.assertEquals(hotelResultsPage.getText(),"No Results Found");
     }
 }

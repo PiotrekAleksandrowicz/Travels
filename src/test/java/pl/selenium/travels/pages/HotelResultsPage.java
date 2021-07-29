@@ -13,13 +13,24 @@ public class HotelResultsPage {
     @FindBy(xpath = "//h4[@class='RTL go-text-right mt0 mb4 list_title']//b")
     private List<WebElement> hotelList;
 
+    @FindBy(xpath = "//h2[@class='text-center']")
+    public WebElement headingNoResults;
+
     public HotelResultsPage(WebDriver driver){
         PageFactory.initElements(driver, this);
     }
 
     public List<String> getHotelName(){
-        hotelList.stream()
+
+        return hotelList.stream()
                 .map(el ->el.getAttribute("textContent"))
                 .collect(Collectors.toList());
     }
+
+    public String getText(){
+        return headingNoResults.getText();
+    }
+
+
+
 }
