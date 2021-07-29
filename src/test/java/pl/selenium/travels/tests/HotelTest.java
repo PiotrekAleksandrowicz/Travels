@@ -41,19 +41,12 @@ public class HotelTest extends BaseTest {
     @Test
     public void searchHotelwithoutName() {
 
-        WebDriverWait wait = new WebDriverWait(driver, 10);
-        driver.findElement(By.name("checkin")).sendKeys("23/07/2021");
-        driver.findElement(By.name("checkout")).click();
-        driver.findElements(By.xpath("//td[@class='day ' and text()='30']"))
-                .stream()
-                .filter(el -> el.isDisplayed())
-                .findFirst()
-                .ifPresent(el -> el.click());
-        driver.findElement(By.id("travellersInput")).click();
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("adultPlusBtn")));
-        driver.findElement(By.id("adultPlusBtn")).click();
-        driver.findElement(By.id("childPlusBtn")).click();
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("button[class='btn btn-lg btn-block btn-primary pfb0 loader']")));
+
+        HotelPage hotelPage = new HotelPage(driver);
+        hotelPage.setDates("23/08/2021","30/08/2021");
+        hotelPage.setTravellers();
+        hotelPage.performSearch();
+
         driver.findElement(By.cssSelector("button[class='btn btn-lg btn-block btn-primary pfb0 loader']")).click();
         WebElement result = driver.findElement(By.xpath("//h2[@class='text-center']"));
         Assert.assertTrue(result.isDisplayed());
