@@ -16,6 +16,8 @@ public class BaseTest {
         driver = new ChromeDriver();
         driver.manage().window().maximize();
         driver.get("http://www.kurs-selenium.pl/demo/");
+
+
     }
 
     @AfterMethod
