@@ -56,7 +56,6 @@ public class HotelPage {
         wait.until(ExpectedConditions
                 .visibilityOfElementLocated(By.xpath(xpath)));
         driver.findElement(By.xpath(xpath)).click();
-        //hotelMatch.click();
     }
 
     public void setDates(String checkIn, String checkOut){

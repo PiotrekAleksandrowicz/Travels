@@ -26,15 +26,11 @@ public class HotelTest extends BaseTest {
 
         HotelResultsPage hotelResultsPage = new HotelResultsPage(driver);
         List<String> hotelNames = hotelResultsPage.getHotelName();
-        for (String name:hotelNames) {
-            System.out.println(name);
+
+        Assert.assertEquals("Grand Plaza Apartments", hotelNames.get(0));
         }
 
-        }
-        /*Assert.assertEquals("Jumeirah Beach Hotel", hotelNames.get(0));
-        Assert.assertEquals("Oasis Beach Tower", hotelNames.get(1));
-        Assert.assertEquals("Rose Rayhaan Rotana", hotelNames.get(2));
-        Assert.assertEquals("Hyatt Regency Perth", hotelNames.get(3));*/
+
 
     @Test
     public void searchHotelTest2(){
