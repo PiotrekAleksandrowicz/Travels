@@ -11,6 +11,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class HotelPage {
 
+    private WebDriver driver;
+
     @FindBy(xpath = "//span[text()='Search by Hotel or City Name']")
     private WebElement searchHotelSpan;
 
@@ -41,6 +43,7 @@ public class HotelPage {
 
     public HotelPage(WebDriver driver){
         PageFactory.initElements(driver, this);
+        this.driver = driver;
         WebDriverWait wait = new WebDriverWait(driver, 10);
     }
 
@@ -48,10 +51,12 @@ public class HotelPage {
 
         searchHotelSpan.click();
         searchHotelInput.sendKeys(cityName);
+        String xpath = String.format("//span[@class='select2-match' and text()='%s']",cityName);
         WebDriverWait wait = new WebDriverWait(driver, 10);
         wait.until(ExpectedConditions
-                .visibilityOfElementLocated(By.xpath("//span[@class='select2-match' and text()='Dubai']")));
-        hotelMatch.click();
+                .visibilityOfElementLocated(By.xpath(xpath)));
+        driver.findElement(By.xpath(xpath)).click();
+        //hotelMatch.click();
     }
 
     public void setDates(String checkIn, String checkOut){
