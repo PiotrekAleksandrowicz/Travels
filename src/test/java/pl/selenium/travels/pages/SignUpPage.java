@@ -27,6 +27,32 @@ public class SignUpPage {
     @FindBy(xpath = "//button[text()=' Sign Up']")
     WebElement signUpButton;
 
+    public void setFirstNameInput(String name){
+        firstNameInput.sendKeys(name);
+    }
 
+    public void setLastnameInput(String lastName){
+        lastnameInput.sendKeys(lastName);
+    }
+
+    public void setPhoneInput(String phone){
+        phoneInput.sendKeys(phone);
+    }
+
+    public void setEmailInput(String email){
+        emailInput.sendKeys(email);
+    }
+
+    public void setPasswordInput(String password){
+        passwordInput.sendKeys(password);
+    }
+
+    public void setConfirmPasswordInput(String confirmPassword){
+        confirmPasswordInput.sendKeys(confirmPassword);
+    }
+
+    public void performSignUp(){
+        signUpButton.click();
+    }
 }
 
