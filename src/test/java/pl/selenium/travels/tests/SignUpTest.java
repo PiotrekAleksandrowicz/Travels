@@ -7,6 +7,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
+import pl.selenium.travels.pages.HotelPage;
+import pl.selenium.travels.pages.SignUpPage;
 import pl.selenium.travels.tests.BaseTest;
 
 import java.util.List;
@@ -19,17 +21,23 @@ public class SignUpTest extends BaseTest {
     @Test
     public void signUp(){
 
+
+
+        HotelPage hotelPage = new HotelPage(driver);
+        hotelPage.openSignUpForm();
+
+        SignUpPage signUpPage = new SignUpPage(driver);
+        signUpPage.setFirstNameInput("Jan");
+        signUpPage.setLastnameInput("Kowalski");
+        signUpPage.setPhoneInput("666666666");
         int randomNumber = (int) (Math.random()*100);
-        driver.findElements(By.xpath("//li[@id='li_myaccount']")).stream()
-                .filter(WebElement::isDisplayed).findFirst().ifPresent(WebElement::click);
-        driver.findElements(By.xpath("//a[text()='  Sign Up']")).get(1).click();
-        driver.findElement(By.name("firstname")).sendKeys("Jan");
-        driver.findElement(By.name("lastname")).sendKeys("Kowalski");
-        driver.findElement(By.name("phone")).sendKeys("666666666");
-        driver.findElement(By.name("email")).sendKeys("kowalskiJan" + randomNumber + "@mail.pl");
-        driver.findElement(By.name("password")).sendKeys("123456");
-        driver.findElement(By.name("confirmpassword")).sendKeys("123456");
-        driver.findElement(By.xpath("//button[text()=' Sign Up']")).click();
+        signUpPage.setEmailInput("kowalskiJan" + randomNumber + "@mail.pl");
+        signUpPage.setPasswordInput("123456");
+        signUpPage.setConfirmPasswordInput("123456");
+        signUpPage.performSignUp();
+
+
+
         WebDriverWait wait = new WebDriverWait(driver, 10);
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//h3[@class='RTL']")));
         WebElement heading =  driver.findElement(By.xpath("//h3[@class='RTL']"));
