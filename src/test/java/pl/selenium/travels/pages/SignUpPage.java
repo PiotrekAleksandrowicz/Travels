@@ -1,10 +1,14 @@
 package pl.selenium.travels.pages;
 
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class SignUpPage {
 
+    private WebDriver driver;
 
     @FindBy(name = "firstname")
     WebElement firstNameInput;
@@ -26,6 +30,12 @@ public class SignUpPage {
 
     @FindBy(xpath = "//button[text()=' Sign Up']")
     WebElement signUpButton;
+
+    public SignUpPage(WebDriver driver){
+        PageFactory.initElements(driver, this);
+        this.driver = driver;
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+    }
 
     public void setFirstNameInput(String name){
         firstNameInput.sendKeys(name);
