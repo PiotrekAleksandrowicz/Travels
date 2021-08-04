@@ -21,7 +21,7 @@ public class SignUpTest extends BaseTest {
     @Test
     public void signUp(){
 
-
+        int randomNumber = (int) (Math.random()*100);
 
         HotelPage hotelPage = new HotelPage(driver);
         hotelPage.openSignUpForm();
@@ -30,7 +30,6 @@ public class SignUpTest extends BaseTest {
         signUpPage.setFirstNameInput("Jan");
         signUpPage.setLastnameInput("Kowalski");
         signUpPage.setPhoneInput("666666666");
-        int randomNumber = (int) (Math.random()*100);
         signUpPage.setEmailInput("kowalskiJan" + randomNumber + "@mail.pl");
         signUpPage.setPasswordInput("123456");
         signUpPage.setConfirmPasswordInput("123456");
