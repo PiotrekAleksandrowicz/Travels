@@ -8,6 +8,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 import pl.selenium.travels.pages.HotelPage;
+import pl.selenium.travels.pages.LoggedUserPage;
 import pl.selenium.travels.pages.SignUpPage;
 import pl.selenium.travels.tests.BaseTest;
 
@@ -35,12 +36,9 @@ public class SignUpTest extends BaseTest {
         signUpPage.setConfirmPasswordInput("123456");
         signUpPage.performSignUp();
 
-
-
-        WebDriverWait wait = new WebDriverWait(driver, 10);
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//h3[@class='RTL']")));
-        WebElement heading =  driver.findElement(By.xpath("//h3[@class='RTL']"));
-        Assert.assertTrue(heading.getText().contains("Hi, Jan Kowalski"));
+        LoggedUserPage loggedUserPage = new LoggedUserPage(driver);
+        loggedUserPage.getHeadingText();
+        Assert.assertTrue(loggedUserPage.getHeadingText().contains("Hi, Jan Kowalski"));
     }
 
     @Test

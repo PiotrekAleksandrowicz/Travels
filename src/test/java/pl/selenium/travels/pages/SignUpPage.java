@@ -35,7 +35,7 @@ public class SignUpPage {
     public SignUpPage(WebDriver driver){
         PageFactory.initElements(driver, this);
         this.driver = driver;
-        WebDriverWait wait = new WebDriverWait(driver, 10);
+
     }
 
     public void setFirstNameInput(String name){
