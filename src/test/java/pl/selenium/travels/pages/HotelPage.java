@@ -52,6 +52,7 @@ public class HotelPage {
         PageFactory.initElements(driver, this);
         this.driver = driver;
         WebDriverWait wait = new WebDriverWait(driver, 10);
+
     }
 
     public void setCity(String cityName, WebDriver driver){
