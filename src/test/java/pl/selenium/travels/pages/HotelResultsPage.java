@@ -16,21 +16,20 @@ public class HotelResultsPage {
     @FindBy(xpath = "//h2[@class='text-center']")
     public WebElement headingNoResults;
 
-    public HotelResultsPage(WebDriver driver){
+    public HotelResultsPage(WebDriver driver) {
         PageFactory.initElements(driver, this);
     }
 
-    public List<String> getHotelName(){
+    public List<String> getHotelName() {
 
         return hotelList.stream()
-                .map(el ->el.getAttribute("textContent"))
+                .map(el -> el.getAttribute("textContent"))
                 .collect(Collectors.toList());
     }
 
-    public String getText(){
+    public String getText() {
         return headingNoResults.getText();
     }
-
 
 
 }

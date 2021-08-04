@@ -15,14 +15,14 @@ public class LoggedUserPage {
     @FindBy(xpath = "//h3[@class='RTL']")
     private WebElement heading;
 
-    public LoggedUserPage(WebDriver driver){
+    public LoggedUserPage(WebDriver driver) {
         PageFactory.initElements(driver, this);
         WebDriverWait wait = new WebDriverWait(driver, 10);
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//h3[@class='RTL']")));
 
     }
 
-    public String getHeadingText(){
+    public String getHeadingText() {
         return heading.getText();
     }
 

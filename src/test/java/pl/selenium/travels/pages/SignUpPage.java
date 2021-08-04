@@ -40,46 +40,46 @@ public class SignUpPage {
     private List<WebElement> errors;
 
 
-    public SignUpPage(WebDriver driver){
+    public SignUpPage(WebDriver driver) {
         PageFactory.initElements(driver, this);
         this.driver = driver;
-       ;
+        ;
 
 
     }
 
-    public void setFirstNameInput(String name){
+    public void setFirstNameInput(String name) {
         firstNameInput.sendKeys(name);
     }
 
-    public void setLastnameInput(String lastName){
+    public void setLastnameInput(String lastName) {
         lastnameInput.sendKeys(lastName);
     }
 
-    public void setPhoneInput(String phone){
+    public void setPhoneInput(String phone) {
         phoneInput.sendKeys(phone);
     }
 
-    public void setEmailInput(String email){
+    public void setEmailInput(String email) {
         emailInput.sendKeys(email);
     }
 
-    public void setPasswordInput(String password){
+    public void setPasswordInput(String password) {
         passwordInput.sendKeys(password);
     }
 
-    public void setConfirmPasswordInput(String confirmPassword){
+    public void setConfirmPasswordInput(String confirmPassword) {
         confirmPasswordInput.sendKeys(confirmPassword);
     }
 
-    public void performSignUp(){
+    public void performSignUp() {
         signUpButton.click();
     }
 
-    public List<String> getErrors(){
+    public List<String> getErrors() {
         WebDriverWait wait = new WebDriverWait(driver, 10);
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#headersignupform > div.resultsignup")));
-       return errors.stream()
+        return errors.stream()
                 .map(WebElement::getText)
                 .collect(Collectors.toList());
     }

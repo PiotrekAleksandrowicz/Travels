@@ -16,11 +16,11 @@ import java.util.stream.Collectors;
 public class HotelTest extends BaseTest {
 
     @Test
-    public void searchHotelTest1(){
+    public void searchHotelTest1() {
 
         HotelPage hotelPage = new HotelPage(driver);
         hotelPage.setCity("London", driver);
-        hotelPage.setDates("23/08/2021","30/08/2021");
+        hotelPage.setDates("23/08/2021", "30/08/2021");
         hotelPage.setTravellers(1, 1);
         hotelPage.performSearch();
 
@@ -28,16 +28,15 @@ public class HotelTest extends BaseTest {
         List<String> hotelNames = hotelResultsPage.getHotelName();
 
         Assert.assertEquals("Grand Plaza Apartments", hotelNames.get(0));
-        }
-
+    }
 
 
     @Test
-    public void searchHotelTest2(){
+    public void searchHotelTest2() {
 
         HotelPage hotelPage = new HotelPage(driver);
         hotelPage.setCity("Dubai", driver);
-        hotelPage.setDates("23/08/2021","30/08/2021");
+        hotelPage.setDates("23/08/2021", "30/08/2021");
         hotelPage.setTravellers(1, 1);
         hotelPage.performSearch();
 
@@ -54,12 +53,12 @@ public class HotelTest extends BaseTest {
 
 
         HotelPage hotelPage = new HotelPage(driver);
-        hotelPage.setDates("23/08/2021","30/08/2021");
-        hotelPage.setTravellers(1,1);
+        hotelPage.setDates("23/08/2021", "30/08/2021");
+        hotelPage.setTravellers(1, 1);
         hotelPage.performSearch();
 
         HotelResultsPage hotelResultsPage = new HotelResultsPage(driver);
         Assert.assertTrue(hotelResultsPage.headingNoResults.isDisplayed());
-        Assert.assertEquals(hotelResultsPage.getText(),"No Results Found");
+        Assert.assertEquals(hotelResultsPage.getText(), "No Results Found");
     }
 }

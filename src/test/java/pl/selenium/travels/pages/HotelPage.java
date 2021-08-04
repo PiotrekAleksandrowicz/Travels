@@ -21,7 +21,7 @@ public class HotelPage {
     @FindBy(xpath = "//*[@id=\"select2-drop\"]/div/input")
     private WebElement searchHotelInput;
 
-    @FindBy(xpath = "//span[@class='select2-match' and text()='Dubai']" )
+    @FindBy(xpath = "//span[@class='select2-match' and text()='Dubai']")
     private WebElement hotelMatch;
 
     @FindBy(name = "checkin")
@@ -48,49 +48,48 @@ public class HotelPage {
     @FindBy(xpath = "//a[text()='  Sign Up']")
     private List<WebElement> signUpLink;
 
-    public HotelPage(WebDriver driver){
+    public HotelPage(WebDriver driver) {
         PageFactory.initElements(driver, this);
         this.driver = driver;
         WebDriverWait wait = new WebDriverWait(driver, 10);
 
     }
 
-    public void setCity(String cityName, WebDriver driver){
+    public void setCity(String cityName, WebDriver driver) {
 
         searchHotelSpan.click();
         searchHotelInput.sendKeys(cityName);
-        String xpath = String.format("//span[@class='select2-match' and text()='%s']",cityName);
+        String xpath = String.format("//span[@class='select2-match' and text()='%s']", cityName);
         WebDriverWait wait = new WebDriverWait(driver, 10);
         wait.until(ExpectedConditions
                 .visibilityOfElementLocated(By.xpath(xpath)));
         driver.findElement(By.xpath(xpath)).click();
     }
 
-    public void setDates(String checkIn, String checkOut){
+    public void setDates(String checkIn, String checkOut) {
         checkInInput.sendKeys(checkIn);
         checkOutInput.sendKeys(checkOut);
     }
 
-    public void setTravellers(int adultsToAdd, int childToAdd){
+    public void setTravellers(int adultsToAdd, int childToAdd) {
         travellersInput.click();
-        for(int i = 0; i<adultsToAdd; i++){
+        for (int i = 0; i < adultsToAdd; i++) {
             adultPlusButton.click();
         }
-        for(int i = 0; i<childToAdd; i++){
+        for (int i = 0; i < childToAdd; i++) {
             childPlusButton.click();
         }
     }
 
-    public void performSearch(){
+    public void performSearch() {
         searchButton.click();
     }
 
-    public void openSignUpForm(){
+    public void openSignUpForm() {
         myAccountLink.stream()
                 .filter(WebElement::isDisplayed).findFirst().ifPresent(WebElement::click);
         signUpLink.get(1).click();
     }
-
 
 
 }

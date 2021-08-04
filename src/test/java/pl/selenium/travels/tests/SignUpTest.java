@@ -1,26 +1,22 @@
 package pl.selenium.travels.tests;
 
-
-import org.openqa.selenium.By;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 import pl.selenium.travels.pages.HotelPage;
 import pl.selenium.travels.pages.LoggedUserPage;
 import pl.selenium.travels.pages.SignUpPage;
-import java.util.List;
 
+import java.util.List;
 
 
 public class SignUpTest extends BaseTest {
 
 
     @Test
-    public void signUp(){
+    public void signUp() {
 
-        int randomNumber = (int) (Math.random()*100);
+        int randomNumber = (int) (Math.random() * 100);
 
         HotelPage hotelPage = new HotelPage(driver);
         hotelPage.openSignUpForm();
@@ -40,7 +36,7 @@ public class SignUpTest extends BaseTest {
     }
 
     @Test
-    public void signUpEmptyForm(){
+    public void signUpEmptyForm() {
 
         HotelPage hotelPage = new HotelPage(driver);
         hotelPage.openSignUpForm();
@@ -60,7 +56,7 @@ public class SignUpTest extends BaseTest {
     }
 
     @Test
-    public void signUpWrongEmail(){
+    public void signUpWrongEmail() {
 
         HotelPage hotelPage = new HotelPage(driver);
         hotelPage.openSignUpForm();
