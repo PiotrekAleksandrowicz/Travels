@@ -1,5 +1,8 @@
 package pl.selenium.travels.pages;
 
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -14,6 +17,9 @@ import java.util.List;
 public class HotelPage {
 
     private WebDriver driver;
+
+    private static final Logger logger  = LogManager.getLogger();
+
 
     @FindBy(xpath = "//span[text()='Search by Hotel or City Name']")
     private WebElement searchHotelSpan;
@@ -56,7 +62,7 @@ public class HotelPage {
     }
 
     public void setCity(String cityName, WebDriver driver) {
-
+        logger.info("Set city:" + cityName);
         searchHotelSpan.click();
         searchHotelInput.sendKeys(cityName);
         String xpath = String.format("//span[@class='select2-match' and text()='%s']", cityName);

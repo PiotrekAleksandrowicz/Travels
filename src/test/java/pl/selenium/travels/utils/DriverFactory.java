@@ -9,9 +9,11 @@ public class DriverFactory {
 
     public static WebDriver getDriver(String browser) {
         if (browser.equalsIgnoreCase("firefox")) {
-            return new ChromeDriver();
-        } else {
+            WebDriverManager.firefoxdriver().setup();
             return new FirefoxDriver();
+        } else {
+            WebDriverManager.chromedriver().setup();
+            return new ChromeDriver();
         }
     }
 }
