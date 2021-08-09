@@ -1,19 +1,13 @@
 package pl.selenium.travels.tests;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import pl.selenium.travels.pages.HotelPage;
 import pl.selenium.travels.pages.HotelResultsPage;
-import pl.selenium.travels.tests.BaseTest;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
-public class HotelTest extends BaseTest {
+public class  HotelTest extends BaseTest {
 
     @Test
     public void searchHotelTest1() {

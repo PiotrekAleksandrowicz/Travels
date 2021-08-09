@@ -1,6 +1,5 @@
 package pl.selenium.travels.pages;
 
-
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
@@ -62,6 +61,7 @@ public class HotelPage {
     }
 
     public void setCity(String cityName, WebDriver driver) {
+
         logger.info("Set city:" + cityName);
         searchHotelSpan.click();
         searchHotelInput.sendKeys(cityName);
@@ -70,6 +70,7 @@ public class HotelPage {
         wait.until(ExpectedConditions
                 .visibilityOfElementLocated(By.xpath(xpath)));
         driver.findElement(By.xpath(xpath)).click();
+        logger.info("Set city " + cityName + " DONE");
     }
 
     public void setDates(String checkIn, String checkOut) {
