@@ -74,18 +74,27 @@ public class HotelPage {
     }
 
     public void setDates(String checkIn, String checkOut) {
+        logger.info("Set check in date: " + checkIn );
         checkInInput.sendKeys(checkIn);
+        logger.info("Check in date: " + checkIn + " DONE" );
+        logger.info("Set check out date: " + checkOut );
         checkOutInput.sendKeys(checkOut);
+        logger.info("Check out date: " + checkOut + " DONE" );
     }
 
     public void setTravellers(int adultsToAdd, int childToAdd) {
         travellersInput.click();
+        logger.info("Set adults: " + adultsToAdd);
         for (int i = 0; i < adultsToAdd; i++) {
             adultPlusButton.click();
         }
+        logger.info("Set adults: " + adultsToAdd + " DONE" );
+
+        logger.info("Set child: " + childToAdd);
         for (int i = 0; i < childToAdd; i++) {
             childPlusButton.click();
         }
+        logger.info("Set child: " + childToAdd + " DONE" );
     }
 
     public void performSearch() {
@@ -93,6 +102,7 @@ public class HotelPage {
     }
 
     public void openSignUpForm() {
+        logger.info("Perform click button");
         myAccountLink.stream()
                 .filter(WebElement::isDisplayed).findFirst().ifPresent(WebElement::click);
         signUpLink.get(1).click();
